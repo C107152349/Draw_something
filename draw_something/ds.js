@@ -1,8 +1,12 @@
 let canvas1 = document.getElementById("canvas1");
 let ctx = canvas1.getContext("2d");
+ctx.fillStyle = "white";
+ctx.fillRect(0,0,400,400);
 let clearbtn = document.getElementById("clearbtn");
 let sendbtn = document.getElementById("sendbtn");
-draw_square(0,0,400);
+let img_out = document.getElementById("img");
+let img = new Image();
+//draw_square(0,0,400);
 let mouseisdown = false;
 let mx = 0,my = 0;
 canvas1.addEventListener("mousedown",function(e){
@@ -26,12 +30,15 @@ window.addEventListener("mouseup",function(e){
 clearbtn.addEventListener("click",function(){
     ctx.beginPath();
     ctx.clearRect(0,0,400,400);
-    draw_square(0,0,400);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0,400,400);
+    //draw_square(0,0,400);
 })
-let img;
 sendbtn.addEventListener("click",function(){
-    img = canvas1.toDataURL("image");
-    console.log(img);
+    img.src = canvas1.toDataURL("image");
+    img_out.src = img.src;
+    //img = ctx.getImageData(0,0,10,10);
+    //console.log(img);
 })
 function draw_square(x,y,w){
     ctx.moveTo(x,y);
